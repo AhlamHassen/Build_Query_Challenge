@@ -58,7 +58,41 @@ FOREIGN KEY           (ClientID) References Client,
 FOREIGN KEY           (TourName, EventYear, EventMonth, EventDay) References Event 
 );
 
-SELECT * FROM -- Get a list of tables and views in the current database
+
 SELECT table_catalog [database], table_schema [schema], table_name name, table_type type
 FROM INFORMATION_SCHEMA.TABLES
 GO
+
+--Task 3
+
+INSERT INTO Tour (TourName, [Description]) VALUES
+('North',	'Tour of wineries and outlets of the Bedigo and Castlemaine region'),
+('South',	'Tour of wineries and outlets of Mornington Penisula'),
+('West',	'Tour of wineries and outlets of the Geelong and Otways region');
+
+INSERT INTO Client (ClientID, Surname, GivenName, Gender) VALUES
+(1,	'Price', 	'Taylor',	'M'),
+(2,	'Gamble',	'Ellyse',   'F'),
+(3,	'Tan',	    'Tilly', 	'F'),
+(103031281, 'Hassen', 'Ahlam', 'F');
+
+INSERT INTO Event (TourName, EventMonth, EventDay, EventYear, EventFee) VALUES
+('North',	'Jan',	9,	2016,	200),
+('North',	'Feb',	13,	2016,	225),
+('South',	'Jan',	9,	2016,	200),
+('South',	'Jan',	16,	2016,	200),
+('West',	'Jan',	29,	2016,	225);
+
+INSERT INTO Booking (ClientID, TourName, EventMonth, EventDay, EventYear, Payment, DateBooked) VALUES
+(1,	'North',	'Jan',  9,	2016,	200,	'12/10/2015'),
+(2,	'North',    'Jan',  9,	2016,	200,    '12/16/2015'),
+(1,	'North',	'Feb',  13,	2016,	225,	'1/8/2016'),
+(2,	'North',    'Feb',  13,	2016,	125,	'1/14/2016'),
+(3,	'North',	'Feb',  13,	2016,	225,	'2/3/2016'),
+(1,	'South',	'Jan',  9,	2016,	200,	'12/10/2015'),
+(2,	'South',	'Jan',  16,	2016,	200,	'12/18/2015'),
+(3,	'South',	'Jan',  16,	2016,	200,	'1/9/2016'),
+(2,	'West',	    'Jan',  29,	2016,	225,	'12/17/2015'),
+(3,	'West',	    'Jan',  29,	2016,	200,	'12/18/2015');
+
+SELECT * FROM Client;
