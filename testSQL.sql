@@ -135,3 +135,47 @@ INNER JOIN        Booking B ON E.TourName = B.TourName AND E.EventYear = B.Event
                   AND E.EventMonth = B.EventMonth AND E.EventDay = B.EventDay)
 INNER JOIN        Client C ON B.ClientID = C.ClientID);
 
+
+--Task 6
+
+--Test Query 1 *******************************
+
+SELECT COUNT(DateBooked) FROM Booking;
+
+/* This test query shows that there are 10 booked dates and when query 1 is run the result 
+contains 10 bookings. Aditionally, the the booking table in Task 3 has 10 insertions.
+Subsequently, we can conclude that query 1 is returning correct results.*/
+
+--Test Query 2**************************
+
+SELECT COUNT(TourName) FROM Event;
+--This query returns 5 tour events 
+/*when we add the number of bookings of each month the result is also 5. Additionally
+when we compare the number of insertions to the Event table in task 3 we find that there
+are 5 insertions as well, and also the tournames and numbers resulted for the months 
+in query 2 are correct*/
+
+
+--Test Query 3 ***************************
+
+SELECT AVG(Payment) FROM Booking;
+-- Tha average Payment is 200
+
+SELECT  COUNT(Payment) 
+FROM    Booking
+WHERE    Payment = (SELECT AVG(Payment) FROM Booking);
+
+-- There are 6 bookings equal to the average payment
+
+SELECT  COUNT(Payment) 
+FROM    Booking
+WHERE    Payment < (SELECT AVG(Payment) FROM Booking);
+
+-- There is one payment which is less than the average payment
+
+/* Query 3 returns 3 bookings which are greater than the average numbers when we add 
+the numbers of the bookings who are greater than the average (6) less than the average (1)
+and greater than the average (3) returns 10, as we have 10 bookings when referening
+to task 3 insertions of the booking table we can conclude that query 3 is retrurning correct results*/
+
+
