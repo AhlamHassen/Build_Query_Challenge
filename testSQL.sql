@@ -123,3 +123,15 @@ SELECT     B.*
 FROM       Booking B
 WHERE      B.Payment > (SELECT AVG(B.Payment) FROM Booking B);
 
+
+--Task 5
+
+CREATE  VIEW Query1View AS
+SELECT            C.GivenName, C.Surname, T.TourName, T.Description, E.EventYear, 
+                  E.EventMonth, E.EventDay, E.EventFee, B.DateBooked, B.Payment
+FROM              (((Event E
+INNER JOIN        Tour T  ON T.TourName = E.TourName)
+INNER JOIN        Booking B ON E.TourName = B.TourName AND E.EventYear = B.EventYear 
+                  AND E.EventMonth = B.EventMonth AND E.EventDay = B.EventDay)
+INNER JOIN        Client C ON B.ClientID = C.ClientID);
+
